@@ -23,18 +23,36 @@ export const school = {
   },
 
   get aGradeStudents() {
-    return Object.values(this.students).filter(({averageGrade}) => averageGrade >= 90);
+    let grade = []
+    Object.values(this.students)
+      .filter(({averageGrade}) => averageGrade >= 90)
+      .forEach(({name}) => grade.push(name));
+      return grade.join(', ')
   },
 
   get bGradeStudents() {
-    return Object.values(this.students).filter(({averageGrade}) => averageGrade <= 89 && averageGrade > 75);
+    return Object.values(this.students).reduce((acc, val) => {
+      if (val.averageGrade <= 89 && val.averageGrade > 75) {
+        return acc.length === 0 ? acc += val.name : acc += `, ${val.name}`
+      }
+      return acc
+    }, '')
   },
   
   get cGradeStudents() {
-    return Object.values(this.students).filter(({averageGrade}) => averageGrade <= 75 && averageGrade >= 60);
+    let grade = []
+    Object.values(this.students)
+      .filter(({averageGrade}) => averageGrade <= 75 && averageGrade >= 60)
+      .forEach(({name}) => grade.push(name));
+      return grade.join(', ')
   },
   
   get dGradeStudents() {
-    return Object.values(this.students).filter(({averageGrade}) => averageGrade <= 59);
+    let grade = []
+    Object.values(this.students)
+      .filter(({averageGrade}) => averageGrade <= 59)
+      .forEach(({name}) => grade.push(name));
+      return grade.join(', ')
   },
 }
+
