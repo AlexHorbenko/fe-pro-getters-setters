@@ -9,6 +9,7 @@ function Student(name, grades) {
   });
 }
 
+
 export const school = {
   students: {
     0: new Student('Maria', [45, 76, 45, 98, 90, 87, 56]),
@@ -20,4 +21,20 @@ export const school = {
     6: new Student('Eugene', [97, 34, 78, 85, 98, 65]),
     7: new Student('Ivan', [76, 89, 78, 98, 98, 99, 89, 96]),
   },
-};
+
+  get aGradeStudents() {
+    return Object.values(this.students).filter(({averageGrade}) => averageGrade >= 90);
+  },
+
+  get bGradeStudents() {
+    return Object.values(this.students).filter(({averageGrade}) => averageGrade <= 89 && averageGrade > 75);
+  },
+  
+  get cGradeStudents() {
+    return Object.values(this.students).filter(({averageGrade}) => averageGrade <= 75 && averageGrade >= 60);
+  },
+  
+  get dGradeStudents() {
+    return Object.values(this.students).filter(({averageGrade}) => averageGrade <= 59);
+  },
+}
