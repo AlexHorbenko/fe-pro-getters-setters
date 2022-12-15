@@ -27,7 +27,7 @@ export const school = {
     Object.values(this.students)
       .filter(({averageGrade}) => averageGrade >= 90)
       .forEach(({name}) => grade.push(name));
-      return grade.join(', ')
+    return grade.join(', ')
   },
 
   get bGradeStudents() {
@@ -40,19 +40,22 @@ export const school = {
   },
   
   get cGradeStudents() {
-    let grade = []
-    Object.values(this.students)
-      .filter(({averageGrade}) => averageGrade <= 75 && averageGrade >= 60)
-      .forEach(({name}) => grade.push(name));
-      return grade.join(', ')
+    let students = Object.values(this.students);
+    let names = [];
+
+    students.forEach((student) => {
+      if (student.averageGrade <= 74 && student.averageGrade >= 60) {
+        names.push(student.name)
+      }
+    })
+    return names.join(', ')
   },
   
   get dGradeStudents() {
-    let grade = []
-    Object.values(this.students)
+    return Object.values(this.students)
       .filter(({averageGrade}) => averageGrade <= 59)
-      .forEach(({name}) => grade.push(name));
-      return grade.join(', ')
+      .map(({name}) => name)
+      .join(', ')
   },
 }
 
